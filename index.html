@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse Infrastructure NWI | Predictive Maintenance for Pumps</title>
+<meta name="description" content="Wireless, adhesive-mount sensors that monitor pump vibration and temperature around the clock — predictive maintenance for industrial facilities and municipal water systems across Northwest Indiana.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Pulse Infrastructure NWI">
+<meta property="og:description" content="Know the moment something's wrong — weeks before it's a failure.">
+<meta property="og:image" content="assets/logo.png">
+<meta property="og:url" content="https://pulseinfrastructurenwi.com">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --navy-950:#050B1E;
+    --navy-900:#0A1530;
+    --navy-800:#101F44;
+    --navy-700:#172a52;
+    --blue:#1A73FF;
+    --blue-deep:#0A2E8C;
+    --blue-bright:#3D8BFF;
+    --green:#2FE08A;
+    --white:#FFFFFF;
+    --paper:#F5F7FC;
+    --ink:#0A1530;
+    --mist:#8E9DC4;
+    --mist-dark:#5A6A93;
+    --line-dark:rgba(255,255,255,0.10);
+    --line-light:rgba(10,21,48,0.10);
+    --radius:3px;
+    --max:1180px;
+    --display: 'Big Shoulders Display', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  /* ============ RESET ============ */
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  ul{margin:0;padding:0;list-style:none;}
+  h1,h2,h3,p{margin:0;}
+
+  body{
+    font-family:var(--body);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  :focus-visible{
+    outline:3px solid var(--green);
+    outline-offset:2px;
+  }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-weight:500;
+  }
+  .eyebrow::before{
+    content:'';
+    width:7px;height:7px;
+    background:var(--green);
+    border-radius:50%;
+    box-shadow:0 0 8px var(--green);
+    flex-shrink:0;
+  }
+  .on-dark .eyebrow{color:var(--blue-bright);}
+  .on-light .eyebrow{color:var(--blue-deep);}
+
+  h1,h2,h3{
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    line-height:0.98;
+  }
+
+  h2{
+    font-size:clamp(2.3rem, 4.6vw, 3.8rem);
+    margin-top:14px;
+  }
+
+  .section{
+    padding:96px 0;
+  }
+  @media (max-width:720px){
+    .section{padding:64px 0;}
+  }
+
+  .on-dark{background:var(--navy-950);color:var(--white);}
+  .on-light{background:var(--paper);color:var(--ink);}
+  .on-panel{background:var(--navy-900);color:var(--white);}
+
+  /* ============ BUTTONS ============ */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 28px;
+    border-radius:var(--radius);
+    font-family:var(--mono);
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-weight:500;
+    border:1px solid transparent;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--blue-bright), var(--blue-deep));
+    color:var(--white);
+    box-shadow:0 8px 24px -8px rgba(26,115,255,0.6);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(26,115,255,0.75);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--white);
+    border-color:var(--line-dark);
+  }
+  .btn-ghost:hover{border-color:var(--blue-bright);color:var(--blue-bright);}
+  .btn-ghost.on-light-ghost{color:var(--ink);border-color:var(--line-light);}
+  .btn-ghost.on-light-ghost:hover{border-color:var(--blue-deep);color:var(--blue-deep);}
+
+  /* ============ HEADER ============ */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(5,11,30,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .header-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 0;
+  }
+  .logo-mark{height:37px;}
+  .header-cta{display:flex;align-items:center;gap:12px;}
+  .header-phone{
+    font-family:var(--mono);
+    font-size:0.85rem;
+    color:var(--mist);
+    display:none;
+  }
+  @media (min-width:640px){.header-phone{display:inline;}}
+
+  /* Account for sticky header height when scrolling to sections */
+  section[id], footer[id]{
+    scroll-margin-top:64px;
+  }
+
+  /* Mobile: shrink header CTA so it never clips */
+  @media (max-width:480px){
+    .header-cta .btn{
+      padding:11px 14px;
+      font-size:0.75rem;
+    }
+    .logo-mark{height:30px;}
+  }
+
+  /* ============ HEARTBEAT SIGNATURE ============ */
+  .pulse-strip{
+    width:100%;
+    overflow:hidden;
+    line-height:0;
+  }
+  .pulse-track{
+    display:flex;
+    width:200%;
+    height:100%;
+    animation:pulse-scroll 7s linear infinite;
+  }
+  .pulse-track svg{flex-shrink:0;width:50%;height:100%;display:block;}
+  @keyframes pulse-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pulse-track{animation:none;}
+  }
+  .hero-pulse{height:120px;opacity:0.9;}
+  .hero-pulse path{
+    fill:none;
+    stroke:var(--green);
+    stroke-width:2.5;
+    filter:drop-shadow(0 0 6px rgba(47,224,138,0.65));
+  }
+  .divider-pulse{height:34px;opacity:0.35;}
+  .divider-pulse path{fill:none;stroke:var(--blue-bright);stroke-width:2;}
+  .divider-pulse.on-light-divider path{stroke:var(--blue-deep);opacity:0.5;}
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:60px 0 0;
+    position:relative;
+    overflow-x:hidden;
+  }
+  @media (max-width:720px){
+    .hero{padding:44px 0 0;}
+  }
+  .hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse 60% 50% at 50% 0%, rgba(26,115,255,0.18), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+    max-width:880px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6.2vw, 4.6rem);
+    margin-top:18px;
+    color:var(--white);
+  }
+  .hero h1 span{color:var(--blue-bright);}
+
+  /* Short-viewport (e.g. 768px-tall laptops): scale down so pulse strip stays visible */
+  @media (max-height:800px) and (min-width:721px){
+    .hero{padding:44px 0 0;}
+    .hero h1{font-size:clamp(2rem, 4.2vw, 3.2rem);margin-top:10px;}
+    .hero-sub{font-size:1rem;margin-top:10px;}
+    .hero-ctas{margin-top:18px;}
+    .hero-bottom{margin-top:22px;}
+  }
+  .hero-sub{
+    margin-top:18px;
+    font-size:1.15rem;
+    color:var(--mist);
+    max-width:620px;
+  }
+  .hero-ctas{
+    margin-top:28px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .hero-bottom{position:relative;z-index:1;margin-top:36px;}
+
+  @media (max-width:720px){
+    .hero-bottom{margin-top:24px;}
+  }
+
+  /* ============ PROBLEM ============ */
+  .problem-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:center;
+    margin-top:40px;
+  }
+  @media (max-width:860px){
+    .problem-grid{grid-template-columns:1fr;}
+  }
+  .problem-copy p{margin-top:20px;color:var(--mist-dark);max-width:520px;}
+  .fail-list{margin-top:32px;display:flex;flex-direction:column;gap:18px;}
+  .fail-item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    padding:18px 0 18px 0;
+    border-top:1px solid var(--line-light);
+  }
+  .fail-item:first-child{border-top:none;padding-top:8px;}
+  .fail-item strong{
+    font-family:var(--mono);
+    font-size:0.95rem;
+    display:block;
+    margin-bottom:4px;
+  }
+  .fail-item p{margin:0;color:var(--mist-dark);font-size:0.95rem;}
+  .fail-icon{
+    width:38px;height:38px;
+    flex-shrink:0;
+    border-radius:var(--radius);
+    background:var(--navy-950);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .fail-icon svg{width:20px;height:20px;stroke:var(--blue-bright);}
+  .img-frame{
+    border-radius:6px;
+    overflow:hidden;
+    border:1px solid var(--line-light);
+    box-shadow:0 30px 60px -30px rgba(10,21,48,0.35);
+  }
+  .img-frame img{width:100%;}
+
+  /* ============ HOW IT WORKS ============ */
+  .steps{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:36px;
+  }
+  @media (max-width:860px){.steps{grid-template-columns:1fr;gap:40px;}}
+  .step{position:relative;padding-left:0;}
+  .step-number{
+    font-family:var(--mono);
+    font-size:0.85rem;
+    color:var(--green);
+    letter-spacing:0.1em;
+  }
+  .step h3{
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:1.5rem;
+    color:var(--white);
+    margin-top:10px;
+  }
+  .step p{color:var(--mist);margin-top:10px;font-size:0.97rem;}
+  .step-icon{
+    width:52px;height:52px;
+    border:1px solid var(--line-dark);
+    border-radius:var(--radius);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+  }
+  .step-icon svg{width:26px;height:26px;stroke:var(--blue-bright);}
+
+  .how-visual{
+    margin-top:64px;
+    border-radius:6px;
+    overflow:hidden;
+    border:1px solid var(--line-dark);
+  }
+  .how-visual img{width:100%;}
+
+  /* ============ WHY US ============ */
+  .pillars{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  @media (max-width:760px){.pillars{grid-template-columns:1fr;}}
+  .pillar{
+    background:var(--white);
+    border:1px solid var(--line-light);
+    border-radius:6px;
+    padding:34px;
+  }
+  .pillar-icon{
+    width:46px;height:46px;
+    background:var(--navy-950);
+    border-radius:var(--radius);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:20px;
+  }
+  .pillar-icon svg{width:24px;height:24px;stroke:var(--green);}
+  .pillar h3{
+    font-size:1.4rem;
+    color:var(--ink);
+  }
+  .pillar p{margin-top:12px;color:var(--mist-dark);font-size:0.97rem;}
+
+  .proof-grid{
+    margin-top:64px;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:28px;
+    align-items:stretch;
+  }
+  @media (max-width:860px){.proof-grid{grid-template-columns:1fr;}}
+  .proof-grid .img-frame img{height:100%;object-fit:cover;}
+
+  .trust-strip{
+    margin-top:56px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+    padding-top:32px;
+    border-top:1px solid var(--line-light);
+    font-family:var(--mono);
+    font-size:0.85rem;
+    color:var(--mist-dark);
+    letter-spacing:0.02em;
+  }
+  .trust-strip span{display:flex;align-items:center;gap:8px;}
+  .trust-strip span::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;flex-shrink:0;}
+
+  /* ============ QUOTE FORM ============ */
+  .quote-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:64px;
+    margin-top:40px;
+  }
+  @media (max-width:860px){.quote-grid{grid-template-columns:1fr;}}
+  .quote-info p{color:var(--mist);margin-top:18px;max-width:420px;}
+  .quote-detail{margin-top:36px;display:flex;flex-direction:column;gap:18px;}
+  .quote-detail div{font-family:var(--mono);font-size:0.9rem;color:var(--mist);}
+  .quote-detail strong{color:var(--white);display:block;font-family:var(--body);font-size:1rem;margin-bottom:3px;font-weight:600;}
+
+  form{
+    background:var(--navy-900);
+    border:1px solid var(--line-dark);
+    border-radius:8px;
+    padding:36px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  @media (max-width:540px){
+    form{padding:24px 18px;}
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:540px){.form-row{grid-template-columns:1fr;}}
+  label{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--mist);
+    display:block;
+    margin-bottom:8px;
+  }
+  .field input,.field select,.field textarea{
+    width:100%;
+    background:var(--navy-950);
+    border:1px solid var(--line-dark);
+    border-radius:var(--radius);
+    padding:13px 14px;
+    color:var(--white);
+    font-family:var(--body);
+    font-size:0.95rem;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    border-color:var(--blue-bright);
+  }
+  .field textarea{resize:vertical;min-height:100px;}
+  .field select{appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1L7 7L13 1" stroke="%238E9DC4" stroke-width="1.6"/></svg>');background-repeat:no-repeat;background-position:right 14px center;}
+  .form-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-top:6px;
+  }
+  .form-note{font-size:0.82rem;color:var(--mist-dark);font-family:var(--mono);}
+  .form-status{
+    font-family:var(--mono);
+    font-size:0.88rem;
+    color:var(--green);
+    display:none;
+  }
+  .form-status.visible{display:block;}
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--navy-950);
+    border-top:1px solid var(--line-dark);
+    padding:40px 0;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-row .logo-mark{height:26px;}
+  @media (max-width:480px){
+    .footer-row .logo-mark{height:22px;}
+    .footer-meta{font-size:0.72rem;gap:12px;}
+  }
+  .footer-meta{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--mist-dark);
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap header-row">
+    <a href="#top" aria-label="Pulse Infrastructure NWI home">
+      <img class="logo-mark" src="assets/logo.png" alt="Pulse Infrastructure NWI">
+    </a>
+    <div class="header-cta">
+      <span class="header-phone">Northwest Indiana</span>
+      <a href="#quote" class="btn btn-primary">Request a Quote</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero on-dark" id="top">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Predictive maintenance for critical pump infrastructure</p>
+    <h1>Know the moment<br>something's wrong.<br><span>Weeks before it's a failure.</span></h1>
+    <p class="hero-sub">Wireless, adhesive-mount sensors monitor the vibration and temperature of your pumps around the clock — built for industrial facilities and municipal water systems across Northwest Indiana.</p>
+    <div class="hero-ctas">
+      <a href="#quote" class="btn btn-primary">Request a Quote</a>
+      <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="pulse-strip hero-pulse">
+      <div class="pulse-track" id="heroPulseTrack"></div>
+    </div>
+  </div>
+</section>
+
+<!-- divider -->
+<div class="pulse-strip divider-pulse on-light-divider">
+  <div class="pulse-track" id="divider1"></div>
+</div>
+
+<!-- ============ THE PROBLEM ============ -->
+<section class="section on-light" id="problem">
+  <div class="wrap">
+    <p class="eyebrow">The cost of not knowing</p>
+    <h2>Bearings don't fail without<br>warning. Most facilities<br>just aren't listening.</h2>
+
+    <div class="problem-grid">
+      <div class="problem-copy reveal">
+        <p>Every one of these failure modes develops gradually — days or weeks of slowly worsening vibration and heat before a pump actually goes down. Without continuous monitoring, that window passes unnoticed, and what could have been a scheduled repair becomes an emergency call, a contractor markup, and unplanned downtime.</p>
+
+        <div class="fail-list">
+          <div class="fail-item">
+            <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+            <div><strong>Bearing roller wear</strong><p>Microscopic pitting builds slowly, raising vibration signatures long before any audible sign of trouble.</p></div>
+          </div>
+          <div class="fail-item">
+            <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v6M12 21v-6M5 12H3M21 12h-2"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div><strong>Poor lubrication</strong><p>Grease breakdown increases friction and heat, accelerating wear on every component downstream.</p></div>
+          </div>
+          <div class="fail-item">
+            <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M4 16l4-8 4 5 3-3 5 6"/></svg></div>
+            <div><strong>Contamination ingress</strong><p>Grit and debris entering the housing show up as irregular vibration patterns well before visible damage.</p></div>
+          </div>
+          <div class="fail-item">
+            <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h6l2-4 4 8 2-4h4"/></svg></div>
+            <div><strong>Shaft misalignment</strong><p>Even slight misalignment creates a distinct vibration frequency — one of the earliest and most detectable warning signs.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="img-frame reveal">
+        <img src="assets/bearing_failure_zones.jpg" alt="Diagram of a vertical turbine pump showing common bearing failure zones: bearing roller wear, poor lubrication, contamination ingress, and misalignment.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section on-panel" id="how-it-works">
+  <div class="wrap">
+    <p class="eyebrow">How pulse works</p>
+    <h2 style="color:var(--white)">Three steps between<br>a normal Tuesday and<br>a five-figure repair bill.</h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <p class="step-number">01</p>
+        <h3>Adhere</h3>
+        <p>A wireless vibration and temperature sensor bonds directly to the bearing housing. No wiring, no drilling, no process interruption — install takes minutes per pump.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h4l2 7 4-14 2 7h6"/></svg></div>
+        <p class="step-number">02</p>
+        <h3>Monitor</h3>
+        <p>The sensor streams vibration and thermal data continuously, establishing a healthy baseline signature unique to your equipment.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 2a6 6 0 0 0-6 6v4l-2 4h16l-2-4V8a6 6 0 0 0-6-6Z"/><path d="M9 20a3 3 0 0 0 6 0"/></svg></div>
+        <p class="step-number">03</p>
+        <h3>Alert</h3>
+        <p>The moment a reading drifts from baseline, your team is notified — days or weeks before the issue becomes a failure.</p>
+      </div>
+    </div>
+
+    <div class="how-visual reveal">
+      <img src="assets/solution_pump.jpg" alt="Industrial pump with sensors transmitting continuous monitoring data to the cloud.">
+    </div>
+  </div>
+</section>
+
+<!-- divider -->
+<div class="pulse-strip divider-pulse on-light-divider">
+  <div class="pulse-track" id="divider2"></div>
+</div>
+
+<!-- ============ WHY US ============ -->
+<section class="section on-light" id="why-us">
+  <div class="wrap">
+    <p class="eyebrow">Built for NWI's infrastructure</p>
+    <h2>One monitoring partner.<br>Two very different<br>kinds of pressure.</h2>
+
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 21V9l6 4V9l6 4V5l6 4v12H3Z"/></svg></div>
+        <h3>Industrial &amp; Commercial Facilities</h3>
+        <p>For manufacturing plants and processing facilities, unplanned downtime means halted lines and missed output. Continuous monitoring extends equipment life and turns surprise failures into scheduled maintenance.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+        <h3>Municipal &amp; Public Works</h3>
+        <p>For water and wastewater systems, a lift station failure is a service interruption to residents. Pulse gives utility teams the early warning needed to protect continuity of service and plan maintenance budgets with confidence.</p>
+      </div>
+    </div>
+
+    <div class="proof-grid">
+      <div class="img-frame reveal">
+        <img src="assets/splitcase_pump.jpg" alt="Split-case pump installed in a municipal pump house, fitted with Pulse Infrastructure NWI sensors.">
+      </div>
+      <div class="img-frame reveal">
+        <img src="assets/bearing_diagram.jpg" alt="Technical illustration of cylindrical roller and deep groove ball bearings used in pump assemblies.">
+      </div>
+    </div>
+
+    <div class="trust-strip">
+      <span>End-suction centrifugal pumps</span>
+      <span>Split-case pumps</span>
+      <span>Vertical turbine pumps</span>
+      <span>No-interruption install</span>
+      <span>Local to Northwest Indiana</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE FORM ============ -->
+<section class="section on-dark" id="quote">
+  <div class="wrap">
+    <div class="quote-grid">
+      <div class="quote-info reveal">
+        <p class="eyebrow">Get started</p>
+        <h2 style="color:var(--white)">Request a Quote</h2>
+        <p>Tell us about your facility and equipment. We'll follow up to schedule a walkthrough and scope the right sensor coverage for your pumps.</p>
+
+        <div class="quote-detail">
+          <div><strong>Service area</strong>Northwest Indiana</div>
+          <div><strong>Email</strong>info@pulseinfrastructurenwi.com</div>
+          <div><strong>Response time</strong>Within one business day</div>
+        </div>
+      </div>
+
+      <form id="quoteForm" name="quote-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="reveal">
+        <input type="hidden" name="form-name" value="quote-request">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="company">Company / organization</label>
+            <input type="text" id="company" name="company" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="facility">Facility type</label>
+          <select id="facility" name="facility" required>
+            <option value="">Select one</option>
+            <option>Industrial / Commercial Facility</option>
+            <option>Municipal / Public Works</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="details">Project details</label>
+          <textarea id="details" name="details" placeholder="Number of pumps, pump type if known, and anything else useful."></textarea>
+        </div>
+
+        <div class="form-foot">
+          <button type="submit" class="btn btn-primary">Send Request</button>
+          <p class="form-note">We'll never share your information.</p>
+        </div>
+        <p class="form-status" id="formStatus">Thanks — your request was sent. We'll be in touch within one business day.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap footer-row">
+    <img class="logo-mark" src="assets/logo.png" alt="Pulse Infrastructure NWI">
+    <div class="footer-meta">
+      <span>pulseinfrastructurenwi.com</span>
+      <span>info@pulseinfrastructurenwi.com</span>
+      <span>&copy; 2026 Pulse Infrastructure NWI LLC</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Build the heartbeat SVG once and reuse it across every pulse strip on the page.
+  const HEARTBEAT_PATH = "M0,60 L30,60 L42,8 L56,112 L68,60 L120,60 C128,60 128,40 136,40 C144,40 144,60 152,60 L300,60 C308,60 308,44 316,44 C324,44 324,60 332,60 L600,60";
+
+  function buildPulseSVG(){
+    return `<svg viewBox="0 0 600 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="${HEARTBEAT_PATH}" />
+    </svg>`;
+  }
+
+  document.querySelectorAll('.pulse-track').forEach(track => {
+    track.innerHTML = buildPulseSVG() + buildPulseSVG();
+  });
+
+  // Scroll-reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.15});
+    revealEls.forEach(el=>io.observe(el));
+  } else {
+    revealEls.forEach(el=>el.classList.add('visible'));
+  }
+
+  // Smooth-scroll for in-page CTA links without changing the URL hash.
+  // (Hash navigation can fail/blank-out in some mobile email/app previewers.)
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e){
+      const id = this.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
+  // Form submission (Netlify Forms-compatible AJAX submit)
+  const form = document.getElementById('quoteForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    fetch('/', { method:'POST', body:data })
+      .then(()=>{
+        status.classList.add('visible');
+        form.reset();
+      })
+      .catch(()=>{
+        status.textContent = "Something went wrong sending that — please email info@pulseinfrastructurenwi.com directly.";
+        status.style.color = '#FF6B6B';
+        status.classList.add('visible');
+      });
+  });
+</script>
+
+</body>
+</html>
