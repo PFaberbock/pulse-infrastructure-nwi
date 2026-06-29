@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pulse Infrastructure NWI | Predictive Maintenance for Pumps</title>
-<meta name="description" content="Wireless, adhesive-mount sensors that monitor pump vibration and temperature around the clock — predictive maintenance for industrial facilities and municipal water systems across Northwest Indiana.">
+<meta name="description" content="Wireless, adhesive-mount sensors that monitor pump vibration, temperature, and current draw around the clock — predictive maintenance for industrial facilities and municipal water systems across Northwest Indiana.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Pulse Infrastructure NWI">
@@ -357,6 +357,43 @@
   }
   .how-visual img{width:100%;}
 
+  /* Current Draw Callout */
+  .current-callout{
+    margin-top:40px;
+    display:flex;
+    gap:24px;
+    align-items:flex-start;
+    background:rgba(47,224,138,0.06);
+    border:1px solid rgba(47,224,138,0.18);
+    border-radius:8px;
+    padding:28px 32px;
+  }
+  @media (max-width:640px){
+    .current-callout{flex-direction:column;gap:16px;padding:22px 20px;}
+  }
+  .callout-icon{
+    width:48px;height:48px;
+    flex-shrink:0;
+    background:rgba(47,224,138,0.12);
+    border-radius:var(--radius);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .callout-icon svg{width:26px;height:26px;stroke:var(--green);}
+  .callout-title{
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:1.25rem;
+    color:var(--white);
+    margin-bottom:12px;
+    line-height:1.1;
+  }
+  .callout-text{
+    color:var(--mist);
+    font-size:0.97rem;
+    line-height:1.65;
+    max-width:780px;
+  }
+
   /* ============ WHY US ============ */
   .pillars{
     margin-top:48px;
@@ -536,7 +573,7 @@
   <div class="wrap hero-inner">
     <p class="eyebrow">Predictive maintenance for critical pump infrastructure</p>
     <h1>Know the moment<br>something's wrong.<br><span>Weeks before it's a failure.</span></h1>
-    <p class="hero-sub">Wireless, adhesive-mount sensors monitor the vibration and temperature of your pumps around the clock — built for industrial facilities and municipal water systems across Northwest Indiana.</p>
+    <p class="hero-sub">Wireless, adhesive-mount sensors monitor vibration, temperature, and current draw on your pumps around the clock — built for industrial facilities and municipal water systems across Northwest Indiana.</p>
     <div class="hero-ctas">
       <a href="#quote" class="btn btn-primary">Request a Quote</a>
       <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
@@ -562,7 +599,7 @@
 
     <div class="problem-grid">
       <div class="problem-copy reveal">
-        <p>Every one of these failure modes develops gradually — days or weeks of slowly worsening vibration and heat before a pump actually goes down. Without continuous monitoring, that window passes unnoticed, and what could have been a scheduled repair becomes an emergency call, a contractor markup, and unplanned downtime.</p>
+        <p>Every one of these failure modes develops gradually — days or weeks of slowly worsening vibration, heat, or current draw before a pump actually goes down. Without continuous monitoring, that window passes unnoticed, and what could have been a scheduled repair becomes an emergency call, a contractor markup, and unplanned downtime.</p>
 
         <div class="fail-list">
           <div class="fail-item">
@@ -580,6 +617,10 @@
           <div class="fail-item">
             <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h6l2-4 4 8 2-4h4"/></svg></div>
             <div><strong>Shaft misalignment</strong><p>Even slight misalignment creates a distinct vibration frequency — one of the earliest and most detectable warning signs.</p></div>
+          </div>
+          <div class="fail-item">
+            <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div><strong>Abnormal current draw</strong><p>A pump drawing more amperage than its baseline to achieve the same output is fighting internal resistance — bearing drag, impeller wear, or cavitation. That delta is a measurable early warning and a data point your team can use to evaluate repair versus replacement on your own terms.</p></div>
           </div>
         </div>
       </div>
@@ -608,7 +649,7 @@
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h4l2 7 4-14 2 7h6"/></svg></div>
         <p class="step-number">02</p>
         <h3>Monitor</h3>
-        <p>The sensor streams vibration and thermal data continuously, establishing a healthy baseline signature unique to your equipment.</p>
+        <p>The sensor streams vibration, temperature, and current draw continuously, establishing a healthy baseline signature unique to your equipment. Any drift from that baseline is captured in real time.</p>
       </div>
       <div class="step reveal">
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 2a6 6 0 0 0-6 6v4l-2 4h16l-2-4V8a6 6 0 0 0-6-6Z"/><path d="M9 20a3 3 0 0 0 6 0"/></svg></div>
@@ -620,6 +661,17 @@
 
     <div class="how-visual reveal">
       <img src="assets/solution_pump.jpg" alt="Industrial pump with sensors transmitting continuous monitoring data to the cloud.">
+    </div>
+
+    <!-- Current Draw Callout -->
+    <div class="current-callout reveal">
+      <div class="callout-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="callout-body">
+        <h3 class="callout-title">What current draw tells you that vibration alone cannot</h3>
+        <p class="callout-text">A pump drawing more amperage than its baseline to achieve the same output is fighting internal resistance — bearing drag, a worn impeller, cavitation, or early mechanical breakdown. We track that delta continuously. When it crosses a threshold your team defines, you have an objective, data-backed reference point for your repair-versus-replacement decision. No guesswork. No vendor pressure. Just the number.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -661,6 +713,7 @@
       <span>End-suction centrifugal pumps</span>
       <span>Split-case pumps</span>
       <span>Vertical turbine pumps</span>
+      <span>Vibration · Temperature · Current draw</span>
       <span>No-interruption install</span>
       <span>Local to Northwest Indiana</span>
     </div>
