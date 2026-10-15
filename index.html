@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulse Infrastructure NWI | Predictive Maintenance for Pumps</title>
-<meta name="description" content="Wireless, adhesive-mount sensors that monitor pump vibration, temperature, and current draw around the clock — predictive maintenance for industrial facilities and municipal water systems across Northwest Indiana.">
+<title>Pulse Infrastructure NWI | Condition Monitoring for Pumps</title>
+<meta name="description" content="Wireless, adhesive-mount sensors that monitor pump vibration, temperature, and current draw — condition-based monitoring for industrial, healthcare, and commercial facilities across Northwest Indiana and Chicagoland.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Pulse Infrastructure NWI">
-<meta property="og:description" content="Know the moment something's wrong — weeks before it's a failure.">
-<meta property="og:image" content="assets/logo.png">
+<meta property="og:description" content="Continuous condition monitoring for critical pump infrastructure — early warning of developing fault conditions.">
+<meta property="og:image" content="https://www.pulseinfrastructurenwi.com/assets/logo.png">
 <meta property="og:url" content="https://pulseinfrastructurenwi.com">
 <meta property="og:type" content="website">
 
@@ -398,7 +398,7 @@
   .pillars{
     margin-top:48px;
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:28px;
   }
   @media (max-width:760px){.pillars{grid-template-columns:1fr;}}
@@ -541,6 +541,15 @@
     gap:24px;
     flex-wrap:wrap;
   }
+  .footer-legal{
+    max-width:var(--max);
+    margin:22px auto 0;
+    padding:18px 28px 0;
+    border-top:1px solid var(--line-dark);
+    font-size:0.78rem;
+    color:var(--mist-dark);
+    line-height:1.6;
+  }
 
   .reveal{
     opacity:0;
@@ -559,7 +568,7 @@
 <header>
   <div class="wrap header-row">
     <a href="#top" aria-label="Pulse Infrastructure NWI home">
-      <img class="logo-mark" src="assets/logo.png" alt="Pulse Infrastructure NWI">
+      <img class="logo-mark" src="assets/logo-white.png" alt="Pulse Infrastructure NWI">
     </a>
     <div class="header-cta">
       <span class="header-phone">Northwest Indiana</span>
@@ -571,9 +580,9 @@
 <!-- ============ HERO ============ -->
 <section class="hero on-dark" id="top">
   <div class="wrap hero-inner">
-    <p class="eyebrow">Predictive maintenance for critical pump infrastructure</p>
-    <h1>Know the moment<br>something's wrong.<br><span>Weeks before it's a failure.</span></h1>
-    <p class="hero-sub">Wireless, adhesive-mount sensors monitor vibration, temperature, and current draw on your pumps around the clock — built for industrial facilities and municipal water systems across Northwest Indiana.</p>
+    <p class="eyebrow">Condition monitoring for critical pump infrastructure</p>
+    <h1>Continuous monitoring<br>for critical pump<br><span>infrastructure.</span></h1>
+    <p class="hero-sub">Wireless, adhesive-mount sensors track vibration, temperature, and current draw on your pumps against a baseline built from that specific machine &mdash; early warning of developing fault conditions, for industrial, healthcare, and commercial facilities across Northwest Indiana and Chicagoland.</p>
     <div class="hero-ctas">
       <a href="#quote" class="btn btn-primary">Request a Quote</a>
       <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
@@ -595,16 +604,16 @@
 <section class="section on-light" id="problem">
   <div class="wrap">
     <p class="eyebrow">The cost of not knowing</p>
-    <h2>Bearings don't fail without<br>warning. Most facilities<br>just aren't listening.</h2>
+    <h2>Bearings change before<br>they fail. Most facilities<br>have no way to see it.</h2>
 
     <div class="problem-grid">
       <div class="problem-copy reveal">
-        <p>Every one of these failure modes develops gradually — days or weeks of slowly worsening vibration, heat, or current draw before a pump actually goes down. Without continuous monitoring, that window passes unnoticed, and what could have been a scheduled repair becomes an emergency call, a contractor markup, and unplanned downtime.</p>
+        <p>Every one of these failure modes changes how a pump behaves &mdash; its vibration, its heat, the current it draws. Those changes are measurable. Without continuous monitoring, they go unrecorded, and the first indication your team gets is often the failure itself.</p>
 
         <div class="fail-list">
           <div class="fail-item">
             <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
-            <div><strong>Bearing roller wear</strong><p>Microscopic pitting builds slowly, raising vibration signatures long before any audible sign of trouble.</p></div>
+            <div><strong>Bearing roller wear</strong><p>Microscopic pitting builds slowly, raising vibration levels measurably while the machine still sounds normal.</p></div>
           </div>
           <div class="fail-item">
             <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v6M12 21v-6M5 12H3M21 12h-2"/><circle cx="12" cy="12" r="3"/></svg></div>
@@ -616,11 +625,11 @@
           </div>
           <div class="fail-item">
             <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h6l2-4 4 8 2-4h4"/></svg></div>
-            <div><strong>Shaft misalignment</strong><p>Even slight misalignment creates a distinct vibration frequency — one of the earliest and most detectable warning signs.</p></div>
+            <div><strong>Shaft misalignment</strong><p>Even slight misalignment changes how a machine vibrates, shifting it away from its own established baseline.</p></div>
           </div>
           <div class="fail-item">
             <div class="fail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <div><strong>Abnormal current draw</strong><p>A pump drawing more amperage than its baseline to achieve the same output is fighting internal resistance — bearing drag, impeller wear, or cavitation. That delta is a measurable early warning and a data point your team can use to evaluate repair versus replacement on your own terms.</p></div>
+            <div><strong>Abnormal current draw</strong><p>A pump drawing more amperage than its baseline to achieve the same output is fighting internal resistance &mdash; bearing drag, impeller wear, or cavitation. That delta is a measurable early warning and a data point your team can use to evaluate repair versus replacement on your own terms.</p></div>
           </div>
         </div>
       </div>
@@ -636,26 +645,26 @@
 <section class="section on-panel" id="how-it-works">
   <div class="wrap">
     <p class="eyebrow">How pulse works</p>
-    <h2 style="color:var(--white)">Three steps between<br>a normal Tuesday and<br>a five-figure repair bill.</h2>
+    <h2 style="color:var(--white)">Three steps to<br>continuous visibility<br>on your pumps.</h2>
 
     <div class="steps">
       <div class="step reveal">
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
         <p class="step-number">01</p>
         <h3>Adhere</h3>
-        <p>A wireless vibration and temperature sensor bonds directly to the bearing housing. No wiring, no drilling, no process interruption — install takes minutes per pump.</p>
+        <p>A wireless vibration and temperature sensor bonds directly to the bearing housing. No wiring, no drilling, no process interruption &mdash; install takes minutes per pump.</p>
       </div>
       <div class="step reveal">
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h4l2 7 4-14 2 7h6"/></svg></div>
         <p class="step-number">02</p>
         <h3>Monitor</h3>
-        <p>The sensor streams vibration, temperature, and current draw continuously, establishing a healthy baseline signature unique to your equipment. Any drift from that baseline is captured in real time.</p>
+        <p>Sensors report vibration and temperature at regular intervals, and a separate current-transformer node reports amperage. Together they establish a baseline signature unique to that machine &mdash; including whatever nominal vibration it has developed from its own age, setup, or foundation. The baseline is the machine's own normal, not a generic threshold.</p>
       </div>
       <div class="step reveal">
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 2a6 6 0 0 0-6 6v4l-2 4h16l-2-4V8a6 6 0 0 0-6-6Z"/><path d="M9 20a3 3 0 0 0 6 0"/></svg></div>
         <p class="step-number">03</p>
         <h3>Alert</h3>
-        <p>The moment a reading drifts from baseline, your team is notified — days or weeks before the issue becomes a failure.</p>
+        <p>When readings move away from that baseline and the pattern persists, your designated team is notified by email with a plain-language observation and a recommendation your qualified maintenance personnel can review &mdash; early warning of a developing fault condition. Notifications are automated and informational; what to do about them stays your team's decision.</p>
       </div>
     </div>
 
@@ -670,7 +679,7 @@
       </div>
       <div class="callout-body">
         <h3 class="callout-title">What current draw tells you that vibration alone cannot</h3>
-        <p class="callout-text">A pump drawing more amperage than its baseline to achieve the same output is fighting internal resistance — bearing drag, a worn impeller, cavitation, or early mechanical breakdown. We track that delta continuously. When it crosses a threshold your team defines, you have an objective, data-backed reference point for your repair-versus-replacement decision. No guesswork. No vendor pressure. Just the number.</p>
+        <p class="callout-text">A pump drawing more amperage than its baseline to achieve the same output is fighting internal resistance &mdash; bearing drag, a worn impeller, cavitation, or early mechanical breakdown. We track that delta continuously. When it crosses a threshold your team defines, you have an objective, data-backed reference point for your repair-versus-replacement decision. No vendor pressure &mdash; just the number. Current monitoring is available on motors up to 75 A per phase. CT current sensors are supplied by Pulse NWI and installed by your licensed electrician &mdash; we perform no line-voltage electrical work. And everything Pulse delivers is informational only: our monitoring is never connected to your controls, PLCs, or shutdown systems.</p>
       </div>
     </div>
   </div>
@@ -685,18 +694,23 @@
 <section class="section on-light" id="why-us">
   <div class="wrap">
     <p class="eyebrow">Built for NWI's infrastructure</p>
-    <h2>One monitoring partner.<br>Two very different<br>kinds of pressure.</h2>
+    <h2>One monitoring partner.<br>Three very different<br>kinds of pressure.</h2>
 
     <div class="pillars">
       <div class="pillar reveal">
         <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 21V9l6 4V9l6 4V5l6 4v12H3Z"/></svg></div>
         <h3>Industrial &amp; Commercial Facilities</h3>
-        <p>For manufacturing plants and processing facilities, unplanned downtime means halted lines and missed output. Continuous monitoring extends equipment life and turns surprise failures into scheduled maintenance.</p>
+        <p>For manufacturing plants and processing facilities, unplanned downtime means halted lines and missed output. Continuous monitoring gives your team early warning of developing fault conditions, so maintenance decisions are informed by data rather than discovered after the fact.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 21h18M5 21V7h14v14M12 10v5M9.5 12.5h5"/></svg></div>
+        <h3>Hospital Central Plants</h3>
+        <p>For hospital central plants, the risk isn't just downtime &mdash; it's a redundant pump failing silently, so the N+1 backup you're counting on isn't there when the lead unit trips. Standby units are monitored continuously, so their condition is observed rather than assumed.</p>
       </div>
       <div class="pillar reveal">
         <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
         <h3>Municipal &amp; Public Works</h3>
-        <p>For water and wastewater systems, a lift station failure is a service interruption to residents. Pulse gives utility teams the early warning needed to protect continuity of service and plan maintenance budgets with confidence.</p>
+        <p>For water and wastewater utilities, equipment trouble means service interruptions and regulatory exposure. Pulse gives utility teams early warning of developing fault conditions on pumps and motors in dry, above-grade installations, supporting their own maintenance planning.</p>
       </div>
     </div>
 
@@ -713,8 +727,10 @@
       <span>End-suction centrifugal pumps</span>
       <span>Split-case pumps</span>
       <span>Vertical turbine pumps</span>
-      <span>Vibration · Temperature · Current draw</span>
+      <span>Vibration &middot; Temperature &middot; Current draw</span>
       <span>No-interruption install</span>
+      <span>Read-only &mdash; never connected to your controls</span>
+      <span>Automated email alerts &mdash; advisory only</span>
       <span>Local to Northwest Indiana</span>
     </div>
   </div>
@@ -732,7 +748,7 @@
         <div class="quote-detail">
           <div><strong>Service area</strong>Northwest Indiana</div>
           <div><strong>Email</strong>info@pulseinfrastructurenwi.com</div>
-          <div><strong>Response time</strong>Within one business day</div>
+          <div><strong>Quote requests</strong>We aim to reply within one business day</div>
         </div>
       </div>
 
@@ -767,6 +783,7 @@
           <select id="facility" name="facility" required>
             <option value="">Select one</option>
             <option>Industrial / Commercial Facility</option>
+            <option>Hospital / Healthcare Central Plant</option>
             <option>Municipal / Public Works</option>
             <option>Other</option>
           </select>
@@ -779,9 +796,9 @@
 
         <div class="form-foot">
           <button type="submit" class="btn btn-primary">Send Request</button>
-          <p class="form-note">We'll never share your information.</p>
+          <p class="form-note">We do not sell or share your information with third parties.</p>
         </div>
-        <p class="form-status" id="formStatus">Thanks — your request was sent. We'll be in touch within one business day.</p>
+        <p class="form-status" id="formStatus">Thanks — your request was sent. We'll be in touch shortly.</p>
       </form>
     </div>
   </div>
@@ -790,12 +807,15 @@
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap footer-row">
-    <img class="logo-mark" src="assets/logo.png" alt="Pulse Infrastructure NWI">
+    <img class="logo-mark" src="assets/logo-white.png" alt="Pulse Infrastructure NWI">
     <div class="footer-meta">
       <span>pulseinfrastructurenwi.com</span>
       <span>info@pulseinfrastructurenwi.com</span>
       <span>&copy; 2026 Pulse Infrastructure NWI LLC</span>
     </div>
+  </div>
+  <div class="footer-legal">
+    Pulse Infrastructure NWI LLC provides condition-based monitoring as a supplemental operational tool. All observations, alerts, and reports are informational and advisory. They are not engineering recommendations, safety directives, or maintenance orders, and they are never connected to client control, interlock, or shutdown systems. Pulse Infrastructure NWI does not provide PE-stamped engineering documents or statutory regulatory approvals, and makes no representation that any condition will be detected or that any alert will precede a failure by any particular interval. All operating and maintenance decisions remain the client's.
   </div>
 </footer>
 
